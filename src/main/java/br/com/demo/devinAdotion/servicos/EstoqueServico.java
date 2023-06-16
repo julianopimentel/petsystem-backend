@@ -32,6 +32,7 @@ public class EstoqueServico {
             Integer quantidade,
             String animal,
             String categoria_animal
+
     ) throws Exception {
         Estoque estoque = new Estoque();
         Armazem armazem = armazemServico.buscarPorId(armazem_id);
