@@ -10,6 +10,4 @@ public class DevinAdotionApplication {
 		SpringApplication.run(DevinAdotionApplication.class, args);
 	}
 
-	//Teste git hub por Marco Souza
-	// Teste git hub Lenara
 }
