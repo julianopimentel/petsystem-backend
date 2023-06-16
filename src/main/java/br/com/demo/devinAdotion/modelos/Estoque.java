@@ -6,13 +6,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 
 @Data
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@EqualsAndHashCode
-@Table(name = "tb_armazem")
+@Table(name = "tb_estoque")
 public class Estoque {
 
 
