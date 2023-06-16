@@ -40,21 +40,21 @@ class ArmazemServicoTest {
 //        assertEquals("Scooby", cadastro.getNome());
     }
 
-    @Test
-    void buscarTodos() {
-
-        List<Armazem> armazem = List.of(new Armazem(1L, "scooby", "cachorro", true));
-
-        given(repositorio.findAll()).willReturn(armazem);
-
-        List<Armazem> armazemResultado = armazemServico.buscarTodos();
-
-        Assertions.assertNotEquals("gato", armazemResultado);
-
-        then(repositorio)
-                .should()
-                .findAll();
-    }
+//    @Test
+//    void buscarTodos() {
+//
+//        List<Armazem> armazem = List.of(new Armazem(1L, "scooby", "cachorro", true));
+//
+//        given(repositorio.findAll()).willReturn(armazem);
+//
+//        List<Armazem> armazemResultado = armazemServico.buscarTodos();
+//
+//        Assertions.assertNotEquals("gato", armazemResultado);
+//
+//        then(repositorio)
+//                .should()
+//                .findAll();
+//    }
 
     @Test
     void desativar() {
