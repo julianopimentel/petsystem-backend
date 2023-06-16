@@ -1,5 +1,6 @@
-package br.com.demo.devinAdotion.servico;
+package br.com.demo.devinAdotion.servicos;
 
+import br.com.demo.devinAdotion.dto.AutenticacaoResposta;
 import br.com.demo.devinAdotion.modelos.Usuario;
 import br.com.demo.devinAdotion.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,8 @@ public class UsuarioServico {
 
         Usuario usuario = usuarioRepositorio.findByEmail(email);
         if (usuario != null && usuario.getSenha().equals(senha)) {
-            return new AutenticacaoResposta(true, "Autenticação bem-sucedida");
+            return new AutenticacaoResposta(true, "Autenticação bem-sucedida").isAutenticado();
         }
-        return new AutenticacaoResposta(false, "Credenciais inválidas");
+        return new AutenticacaoResposta(false, "Credenciais inválidas").isAutenticado();
     }
 }

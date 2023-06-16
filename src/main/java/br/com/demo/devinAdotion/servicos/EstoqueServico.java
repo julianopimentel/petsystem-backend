@@ -2,11 +2,14 @@ package br.com.demo.devinAdotion.servicos;
 
 import br.com.demo.devinAdotion.modelos.Armazem;
 import br.com.demo.devinAdotion.modelos.Estoque;
-import br.com.demo.devinAdotion.repositorio.EstoqueRepositorio;
+import br.com.demo.devinAdotion.repositorios.ArmazemRepositorio;
+import br.com.demo.devinAdotion.repositorios.EstoqueRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class EstoqueServico {
 
     @Autowired
@@ -29,9 +32,10 @@ public class EstoqueServico {
             Integer quantidade,
             String animal,
             String categoria_animal
-    ){
+
+    ) throws Exception {
         Estoque estoque = new Estoque();
-        Armazem armazem = armazemServico.findById(armazem_id);
+        Armazem armazem = armazemServico.buscarPorId(armazem_id);
         estoque.setProduto(produto);
         estoque.setQuantidade(quantidade);
         estoque.setAnimal(animal);
