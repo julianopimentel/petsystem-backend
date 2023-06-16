@@ -7,11 +7,6 @@ import lombok.*;
 
 @Data
 @Entity
-@Getter @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 @Table (name = "tb_usuario")
 public class Usuario {
 
