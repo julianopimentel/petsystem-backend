@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EstoqueServico {
@@ -24,14 +25,18 @@ public class EstoqueServico {
         return estoqueRepositorio.findAll();
     }
 
+    public Estoque buscarId(Long id){
+        Optional<Estoque> estoque = estoqueRepositorio.findById(id);
+        return (estoque.isPresent() ? estoque.get() : null);
+    }
+
     // 7 - Cadastro de Produto do estoque
-    public  Long cadastro(
+    public  Long salvar (
             Long armazem_id,
             String produto,
             Integer quantidade,
             String animal,
             String categoria_animal
-
     ) throws Exception {
         Estoque estoque = new Estoque();
         Armazem armazem = armazemServico.buscarPorId(armazem_id);
@@ -44,13 +49,13 @@ public class EstoqueServico {
 
     // 5 - Editar produto do estoque
 
-    public  Estoque update (Estoque estoque) {
+    public  Estoque editar (Estoque estoque) {
         return estoqueRepositorio.save(estoque);
     }
 
     // 6 - Remover item
 
-    public void deleteById(Long id) {
+    public void deletarId (Long id) {
         estoqueRepositorio.deleteById(id);
     }
 
