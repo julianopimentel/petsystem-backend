@@ -2,7 +2,6 @@ package br.com.demo.devinAdotion.servicos;
 
 import br.com.demo.devinAdotion.modelos.Armazem;
 import br.com.demo.devinAdotion.modelos.Estoque;
-import br.com.demo.devinAdotion.repositorios.ArmazemRepositorio;
 import br.com.demo.devinAdotion.repositorios.EstoqueRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +20,12 @@ public class EstoqueServico {
 
     // 4 - Listagem do estoque
 
-    public List<Estoque> findAll(){
+    public List<Estoque> buscarTodos(){
         return estoqueRepositorio.findAll();
     }
 
     // 7 - Cadastro de Produto do estoque
-    public  Long save (
+    public  Long cadastro(
             Long armazem_id,
             String produto,
             Integer quantidade,
