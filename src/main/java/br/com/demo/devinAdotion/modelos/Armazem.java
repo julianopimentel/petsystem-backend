@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "tb_armazem")
 public class Armazem {
