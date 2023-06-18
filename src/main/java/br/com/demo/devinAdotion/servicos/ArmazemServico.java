@@ -17,7 +17,7 @@ public class ArmazemServico {
     public Armazem cadastro(Armazem armazem) throws Exception {
 
 
-        Armazem armazemBanco = new Armazem();
+        Armazem armazemBanco = new Armazem(1L, "armazem1", "Gato", true);
         if (armazem.getId() != null) {
             armazemBanco = buscarPorId(armazem.getId());
         }

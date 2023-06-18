@@ -5,6 +5,8 @@ import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "tb_estoque")
 public class Estoque {
@@ -14,11 +16,6 @@ public class Estoque {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "armazem_id")
-    @NotNull
-    private Armazem armazem;
 
     //@NotBlank(message = " O preenchimento deste campo é obrigatório. ")
     @Column(nullable = false)
@@ -33,5 +30,9 @@ public class Estoque {
     @Column(nullable = false)
     private  String categoria_animal;
 
+    @ManyToOne
+    @JoinColumn(name = "armazem_id")
+    @NotNull
+    private Armazem armazem;
 
 }
