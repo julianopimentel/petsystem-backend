@@ -14,20 +14,6 @@ Utilizar o banco de dados PostgreSQL para armazenar os dados.
 Roteiro da Aplicação
 
 
-# Requisitos da Aplicação
-- Utilização do Spring Boot, Spring MVC e Spring Data.
-- Criação de uma API REST para realizar as operações de gerenciamento de estoque.
-- Utilização do Git com GitHub para o controle de versão do código-fonte.
-- Utilização do banco de dados PostgreSQL para armazenar os dados da aplicação.
-
-# Como Executar a Aplicação
-Para executar a aplicação, siga os passos abaixo:
-- Faça o clone deste repositório para obter o código-fonte.
-- Certifique-se de ter o Java e o PostgreSQL instalados em sua máquina.
-- Configure as informações de conexão com o banco de dados no arquivo de configuração da aplicação Spring.
-- Execute o back-end da aplicação utilizando a IDE de sua preferência ou através do comando mvn spring-boot:run.
-- Acesse a aplicação através do endereço http://localhost:8080.
-- Logo em seguida será apresentado os endpoints para consultas na API.
 ## Documentação da API
 
 ## Autenticação
@@ -49,10 +35,8 @@ Para executar a aplicação, siga os passos abaixo:
 ```
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `nome` | `string` | **Obrigatório**. Nome do armazén |
-| `animal` | `string` | **Obrigatório**. Tipo de animal |
-| `situacao` | `boolean` | **Obrigatório**. Senha do Usuário |
-
+| `email` | `string` | **Obrigatório**. E-mail do Usuário |
+| `password` | `string` | **Obrigatório**. Senha do Usuário |
 
 
 ### Armazén
