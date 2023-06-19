@@ -33,7 +33,7 @@ public class ArmazemServico {
         armazemBanco.setNome(armazemBanco.getNome());
         armazemBanco.setAnimal(armazemBanco.getAnimal());
 
-        return armazemBanco;
+        return armazemRepositorio.save(armazem);
     }
 
     public List<Armazem> buscarTodos() {
