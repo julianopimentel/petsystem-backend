@@ -14,10 +14,6 @@ Utilizar o banco de dados PostgreSQL para armazenar os dados.
 Roteiro da Aplicação
 
 
-## Apêndice
-
-Coloque qualquer informação adicional aqui
-
 # Requisitos da Aplicação
 - Utilização do Spring Boot, Spring MVC e Spring Data.
 - Criação de uma API REST para realizar as operações de gerenciamento de estoque.
