@@ -102,7 +102,7 @@ Roteiro da Aplicação
 | `id` | `long` | **Obrigatório**. ID do Produto |
 | `produto` | `string` | **Obrigatório**. Tipo de Produto(Ração, Antipulgas ou Antiparasitario) |
 | `animal` | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
-| `categoria_animal` | `string` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
+| `categoria` | `string` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
 | `quantidade` | `long` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
 | `armazem_id` | `long` | **Obrigatório**. ID do Armazém |
 
@@ -128,7 +128,7 @@ Roteiro da Aplicação
 | :---------- | :--------- | :---------------------------------- |
 | `produto` | `string` | **Obrigatório**. Tipo de Produto(Ração, Antipulgas ou Antiparasitario) |
 | `animal` | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
-| `categoria_animal` | `string` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
+| `categoria` | `string` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
 | `quantidade` | `long` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
 | `armazem_id` | `long` | **Obrigatório**. ID do Armazém |
 
@@ -141,12 +141,12 @@ Roteiro da Aplicação
 #### Carregar os registros para o dashboard
 
 ```http
-  GET /estatisticas/${animal}/${categoria_animal}
+  GET /estatisticas/${animal}/${categoria}
 ```
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
 | `animal` | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
-| `categoria_animal` | `string` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
+| `categoria` | `string` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
 
 # Contribuição
 Este projeto foi desenvolvido como parte de um trabalho em equipe. Caso queira contribuir para a melhoria desta aplicação, fique à vontade para enviar pull requests e sugestões de melhorias.
