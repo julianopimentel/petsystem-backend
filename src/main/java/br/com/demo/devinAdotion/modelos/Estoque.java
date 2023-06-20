@@ -31,7 +31,7 @@ public class Estoque {
     private  String categoria;
 
     @ManyToOne
-    @JoinColumn(name = "armazem_id")
+    @JoinColumn(name = "armazem_id", nullable = false)
     @NotNull
     private Armazem armazem;
 

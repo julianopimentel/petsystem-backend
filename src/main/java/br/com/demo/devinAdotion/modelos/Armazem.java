@@ -18,7 +18,7 @@ public class Armazem {
     private Long id;
 
     //@NotBlank(message = " O preenchimento deste campo é obrigatório. ")
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private  String nome;
 
     @Column(nullable = false)

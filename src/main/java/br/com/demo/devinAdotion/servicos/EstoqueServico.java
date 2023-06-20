@@ -29,17 +29,36 @@ public class EstoqueServico {
         Optional<Estoque> estoque = estoqueRepositorio.findById(id);
         return (estoque.isPresent() ? estoque.get() : null);
     }
+//
+//    // 7 - Cadastro de Produto do estoque
+//    public  Long salvar (
+//            Long armazem_id,
+//            String produto,
+//            Integer quantidade,
+//            String animal,
+//            String categoria
+//    ) throws Exception {
+//        Estoque estoque = new Estoque();
+//        Armazem armazem = armazemServico.buscarPorId(armazem_id);
+//        estoque.setProduto(produto);
+//        estoque.setQuantidade(quantidade);
+//        estoque.setAnimal(animal);
+//        estoque.setCategoria(categoria);
+//        return estoqueRepositorio.save(estoque).getId();
+//    }
 
-    // 7 - Cadastro de Produto do estoque
+
+
+    // 7 - Cadastro de Produto do estoque - vendo se vai arrumar o cadastro do estoque
     public  Long salvar (
-            Long armazem_id,
+            Long armazem,
             String produto,
             Integer quantidade,
             String animal,
             String categoria
     ) throws Exception {
         Estoque estoque = new Estoque();
-        Armazem armazem = armazemServico.buscarPorId(armazem_id);
+        Armazem armazem1 = armazemServico.buscarPorId(armazem);
         estoque.setProduto(produto);
         estoque.setQuantidade(quantidade);
         estoque.setAnimal(animal);

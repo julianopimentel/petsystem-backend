@@ -56,13 +56,24 @@ public class EstoqueControle {
 //    }
 
             // ou assim
+//    @PostMapping(value = "/cadastro")
+//    public ResponseEntity<Long> salvar(@RequestParam("armazem_id") Long armazem_id,
+//                                       @RequestParam("produto") String produto,
+//                                       @RequestParam("quantidade") Integer quantidade,
+//                                       @RequestParam("animal") String animal,
+//                                       @RequestParam("categoria") String categoria) throws Exception {
+//        return ResponseEntity.ok().body(estoqueServico.salvar(armazem_id, produto, quantidade, animal, categoria));
+//    }
+
+    // 7 - Cadastro de Produto do estoque - vendo se vai arrumar o cadastro do estoque
+
     @PostMapping(value = "/cadastro")
-    public ResponseEntity<Long> salvar(@RequestParam("armazem_id") Long armazem_id,
+    public ResponseEntity<Long> salvar(@RequestParam("armazem") Long armazem,
                                        @RequestParam("produto") String produto,
                                        @RequestParam("quantidade") Integer quantidade,
                                        @RequestParam("animal") String animal,
                                        @RequestParam("categoria") String categoria) throws Exception {
-        return ResponseEntity.ok().body(estoqueServico.salvar(armazem_id, produto, quantidade, animal, categoria));
+        return ResponseEntity.ok().body(estoqueServico.salvar(armazem, produto, quantidade, animal, categoria));
     }
 
     // edita todos os campos

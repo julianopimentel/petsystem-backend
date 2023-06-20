@@ -40,8 +40,8 @@ public class UsuarioServico {
         return usuarioRepositorio.findById(id).orElse(null);
     }
 
-    public Usuario atualizarUsuario(Usuario usuarioAtualizado) {
-        return usuarioRepositorio.save(usuarioAtualizado);
+    public Usuario atualizarUsuario(Usuario usuario) {
+        return usuarioRepositorio.save(usuario);
     }
 
     public void excluirUsuario(Usuario usuario) {
