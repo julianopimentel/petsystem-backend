@@ -28,7 +28,7 @@ public class Estoque {
     private  String animal;
 
     @Column(nullable = false)
-    private  String categoria_animal;
+    private  String categoria;
 
     @ManyToOne
     @JoinColumn(name = "armazem_id")

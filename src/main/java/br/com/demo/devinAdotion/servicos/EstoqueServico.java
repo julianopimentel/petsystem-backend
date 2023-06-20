@@ -36,14 +36,14 @@ public class EstoqueServico {
             String produto,
             Integer quantidade,
             String animal,
-            String categoria_animal
+            String categoria
     ) throws Exception {
         Estoque estoque = new Estoque();
         Armazem armazem = armazemServico.buscarPorId(armazem_id);
         estoque.setProduto(produto);
         estoque.setQuantidade(quantidade);
         estoque.setAnimal(animal);
-        estoque.setCategoria_animal(categoria_animal);
+        estoque.setCategoria(categoria);
         return estoqueRepositorio.save(estoque).getId();
     }
 

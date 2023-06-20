@@ -56,7 +56,7 @@ class EstoqueServicoTest  {
 
         Estoque estoque1 = estoqueServico.buscarId(1L);
 
-        Assertions.assertEquals("Filhote", estoque1.getCategoria_animal());
+        Assertions.assertEquals("Filhote", estoque1.getCategoria());
 
 
     }
@@ -86,7 +86,7 @@ class EstoqueServicoTest  {
 //
 //        estoqueServico.editar(estoqueEditado);
 //
-//        Assertions.assertEquals("Adulto", estoqueEditado.getCategoria_animal());
+//        Assertions.assertEquals("Adulto", estoqueEditado.getcategoria());
 
     }
 

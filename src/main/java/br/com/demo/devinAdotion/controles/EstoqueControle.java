@@ -51,8 +51,8 @@ public class EstoqueControle {
 //                     @RequestParam("produto") String produto,
 //                     @RequestParam("quantidade") Integer quantidade,
 //                     @RequestParam("animal") String animal,
-//                     @RequestParam("categoria_animal") String categoria_animal) throws Exception {
-//        return ResponseEntity.ok().body(estoqueServico.salvar(armazem_id,produto,quantidade,animal,categoria_animal)).getBody();
+//                     @RequestParam("categoria") String categoria) throws Exception {
+//        return ResponseEntity.ok().body(estoqueServico.salvar(armazem_id,produto,quantidade,animal,categoria)).getBody();
 //    }
 
             // ou assim
@@ -61,8 +61,8 @@ public class EstoqueControle {
                                        @RequestParam("produto") String produto,
                                        @RequestParam("quantidade") Integer quantidade,
                                        @RequestParam("animal") String animal,
-                                       @RequestParam("categoria_animal") String categoria_animal) throws Exception {
-        return ResponseEntity.ok().body(estoqueServico.salvar(armazem_id, produto, quantidade, animal, categoria_animal));
+                                       @RequestParam("categoria") String categoria) throws Exception {
+        return ResponseEntity.ok().body(estoqueServico.salvar(armazem_id, produto, quantidade, animal, categoria));
     }
 
     // edita todos os campos
