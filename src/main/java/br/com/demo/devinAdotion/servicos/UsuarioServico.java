@@ -6,6 +6,8 @@ import br.com.demo.devinAdotion.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsuarioServico {
 
@@ -28,6 +30,22 @@ public class UsuarioServico {
 
         // Aqui a lógica para salvar o usuário no banco de dados
         return usuarioRepositorio.save(usuario);
+    }
+
+    public List<Usuario> listarUsuarios() {
+        return usuarioRepositorio.findAll();
+    }
+
+    public Usuario buscarUsuarioPorId(Long id) {
+        return usuarioRepositorio.findById(id).orElse(null);
+    }
+
+    public Usuario atualizarUsuario(Usuario usuarioAtualizado) {
+        return usuarioRepositorio.save(usuarioAtualizado);
+    }
+
+    public void excluirUsuario(Usuario usuario) {
+        usuarioRepositorio.delete(usuario);
     }
 
     public boolean autenticarUsuario(String email, String senha) {
