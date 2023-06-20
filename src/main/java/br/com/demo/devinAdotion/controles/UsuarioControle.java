@@ -32,6 +32,13 @@ public class UsuarioControle {
         return ResponseEntity.ok(usuarios);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<Usuario> logarUsuario(@RequestBody Usuario usuario) {
+        //Usuario usuarioLogado = usuarioServico.logarUsuario(usuario);
+        //retornar e-mail e senha no body
+        return ResponseEntity.ok(usuario);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable Long id) {
         Usuario usuario = usuarioServico.buscarUsuarioPorId(id);
