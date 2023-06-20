@@ -54,10 +54,13 @@ public class ArmazemControle {
         }
     }
 
-    @DeleteMapping("{id}")
+    @PutMapping("/desativar/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
+        if (id == null){
+            throw new RuntimeException("Escolha o id de um armazem");
+        }
         try {
-            return ResponseEntity.ok(armazemServico.desativar(id));
+            return ResponseEntity.ok(armazemServico.alterarSituacao(id));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

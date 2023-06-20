@@ -1,7 +1,9 @@
 package br.com.demo.devinAdotion.servicos;
 
 import br.com.demo.devinAdotion.modelos.Armazem;
+import br.com.demo.devinAdotion.modelos.Estoque;
 import br.com.demo.devinAdotion.repositorios.ArmazemRepositorio;
+import br.com.demo.devinAdotion.repositorios.EstoqueRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class ArmazemServico {
 
     @Autowired
     private ArmazemRepositorio armazemRepositorio;
+
+    @Autowired
+    private EstoqueRepositorio estoqueRepositorio;
 
     public Armazem cadastro(Armazem armazem) throws Exception {
 
@@ -49,14 +54,18 @@ public class ArmazemServico {
     }
 
 
-
-    public boolean desativar(Long id) {
-        try {
-            Armazem armazem = buscarPorId(id);
-            armazemRepositorio.delete(armazem);
-        } catch (Exception e) {
-            return false;
+    public Armazem alterarSituacao(Long id) {
+        Armazem armazem = armazemRepositorio.findById(id).get();
+        if(armazem == null || armazem.getSituacao() == false){
+            throw new RuntimeException("Armazem não encontrado ou já está desativado");
         }
-        return true;
+
+        long estoqueAtivo = estoqueRepositorio.CountVerificarArmazemAtivo(id);
+        if (estoqueAtivo > 0){
+            throw new RuntimeException("Não é possível desativar um armazem com estoque ativo");
+        }
+        else
+        armazem.setSituacao(false);
+        return armazemRepositorio.save(armazem);
     }
 }
