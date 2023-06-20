@@ -1,6 +1,5 @@
 package br.com.demo.devinAdotion.controles;
 
-import br.com.demo.devinAdotion.modelos.Armazem;
 import br.com.demo.devinAdotion.modelos.Estoque;
 import br.com.demo.devinAdotion.servicos.EstoqueServico;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,26 +65,51 @@ public class EstoqueControle {
     }
 
     // edita todos os campos
-    @PutMapping("/editar/{id}")
-    ResponseEntity<Estoque> editar(@RequestBody Estoque estoque){
+/*    @PutMapping("/editar/{id}")
+    ResponseEntity<Estoque> editar(@PathVariable Long id, @RequestBody Estoque estoque){
+        Estoque estoqueAtualizado = estoqueServico.buscarId(id);
+        if (estoqueAtualizado == null){
+            return ResponseEntity.notFound().build();
+        }
+        estoque.setId(id);
+        estoque.setProduto(estoque.getProduto());
+        estoque.setQuantidade(estoque.getQuantidade());
+        estoque.setAnimal(estoque.getAnimal());
+        estoque.setCategoria(estoque.getCategoria());
+        estoque.setArmazem(estoque.getArmazem());
+
+
         return ResponseEntity.status(HttpStatus.OK).body(estoqueServico.editar(estoque));
-    }
+    }*/
 
     // editar somente produto e quantidade
 
-    @PutMapping("/editar_produto/{id}")
-    public ResponseEntity<Estoque> editar(@PathVariable Long id, @RequestBody Estoque estoqueAtualizado) {
+    @PutMapping("/editar/{id}")
+    public ResponseEntity editar(@PathVariable Long id, @RequestBody Estoque estoqueEditado) {
+        //buscar o estoque pelo id
         Estoque estoque = estoqueServico.buscarId(id);
+        //verificar se o estoque existe
         if (estoque == null) {
             return ResponseEntity.notFound().build();
         }
 
-        estoque.setProduto(estoqueAtualizado.getProduto());
-        estoque.setQuantidade(estoqueAtualizado.getQuantidade());
+        estoque.setProduto(estoqueEditado.getProduto());
+        estoque.setQuantidade(estoqueEditado.getQuantidade());
 
         //Estoque estoqueAtualizado = estoqueServico.salvar(estoque);
-        return ResponseEntity.status(HttpStatus.OK).body(estoqueServico.editar(estoque));
+        //return ResponseEntity.status(HttpStatus.OK).body(estoqueServico.editarProduto(estoque));
         //return ResponseEntity.ok(estoqueAtualizado);
+
+        try {
+            //fazer o update somente dos dados do produto e quantidade
+            estoqueServico.editarProduto(estoque);
+            //buscar os dados atualizados
+            Estoque estoqueAtualizado = estoqueServico.buscarId(id);
+            //retornar os dados atualizados
+            return ResponseEntity.ok(estoqueAtualizado);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Erro ao editar o Estoque");
+        }
     }
 
     @DeleteMapping("{id}")

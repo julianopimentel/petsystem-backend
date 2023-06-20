@@ -49,8 +49,8 @@ public class EstoqueServico {
 
     // 5 - Editar produto do estoque
 
-    public  Estoque editar (Estoque estoque) {
-        return estoqueRepositorio.save(estoque);
+    public void editarProduto (Estoque estoque) {
+        estoqueRepositorio.updateProdutoAndQuantidadeById(estoque.getProduto(), estoque.getQuantidade(), estoque.getId());
     }
 
     // 6 - Remover item
