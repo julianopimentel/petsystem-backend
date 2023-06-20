@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface EstoqueRepositorio extends JpaRepository<Estoque, Long> {
+    @Query("select count(e) from Estoque e where e.armazem.id = ?1")
+    long CountVerificarArmazemAtivo(@NonNull Long id);
     @Transactional
     @Modifying
     @Query("update Estoque e set e.produto = ?1, e.quantidade = ?2 where e.id = ?3")
