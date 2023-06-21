@@ -18,54 +18,70 @@ public class EstoqueServico {
     @Autowired
     private ArmazemServico armazemServico;
 
-
-    // 4 - Listagem do estoque
-
-    public List<Estoque> buscarTodos(){
+    public List<Estoque> buscarTodos() {
         return estoqueRepositorio.findAll();
     }
 
-    public Estoque buscarId(Long id){
+    public Estoque buscarId(Long id) {
         Optional<Estoque> estoque = estoqueRepositorio.findById(id);
-        return (estoque.isPresent() ? estoque.get() : null);
-    }
-//
-//    // 7 - Cadastro de Produto do estoque
-//    public  Long salvar (
-//            Long armazem_id,
-//            String produto,
-//            Integer quantidade,
-//            String animal,
-//            String categoria
-//    ) throws Exception {
-//        Estoque estoque = new Estoque();
-//        Armazem armazem = armazemServico.buscarPorId(armazem_id);
-//        estoque.setProduto(produto);
-//        estoque.setQuantidade(quantidade);
-//        estoque.setAnimal(animal);
-//        estoque.setCategoria(categoria);
-//        return estoqueRepositorio.save(estoque).getId();
-//    }
-
-
-
-    // 7 - Cadastro de Produto do estoque - vendo se vai arrumar o cadastro do estoque
-    public Estoque salvar (Estoque estoque) throws Exception {
-        Armazem armazem = armazemServico.buscarPorId(estoque.getArmazem().getId());
-        estoque.setArmazem(armazem);
-        return estoqueRepositorio.save(estoque);
+        return estoque.orElse(null);
     }
 
-    // 5 - Editar produto do estoque
+    public Long salvar(Estoque estoque) throws Exception {
+        validarEstoque(estoque);
+        Armazem armazem = armazemServico.buscarPorId(estoque.getArmazenamento().getId());
+        if (!verificarAceitacaoAnimal(armazem, estoque.getAnimal())) {
+            throw new Exception("Este local de armazenamento não aceita produtos para o animal especificado.");
+        }
+        estoque.setArmazenamento(armazem);
+        return estoqueRepositorio.save(estoque).getId();
+    }
 
-    public void editarProduto (Estoque estoque) {
+    public void editarProduto(Estoque estoque) {
         estoqueRepositorio.updateProdutoAndQuantidadeById(estoque.getProduto(), estoque.getQuantidade(), estoque.getId());
     }
 
-    // 6 - Remover item
-
-    public void deletarId (Long id) {
+    public void deletarId(Long id) {
         estoqueRepositorio.deleteById(id);
     }
 
+    private void validarEstoque(Estoque estoque) throws Exception {
+        if (!isTipoProdutoValido(estoque.getTipoProduto())) {
+            throw new Exception("Tipo de produto inválido");
+        }
+
+        if (estoque.getQuantidade() <= 0) {
+            throw new Exception("A quantidade deve ser um número inteiro maior que zero");
+        }
+
+        if (!isAnimalValido(estoque.getAnimal())) {
+            throw new Exception("Animal inválido");
+        }
+
+        if (!isCategoriaValida(estoque.getCategoria())) {
+            throw new Exception("Categoria inválida");
+        }
+    }
+
+    private boolean isTipoProdutoValido(String tipoProduto) {
+        // Verifica se o tipo do produto é válido
+        return tipoProduto.equals("Ração") ||
+                tipoProduto.equals("Antiparasitário") ||
+                tipoProduto.equals("Antipulgas");
+    }
+
+    private boolean isAnimalValido(String animal) {
+        // Verifica se o animal é válido
+        return animal.equals("Cachorro") || animal.equals("Gato");
+    }
+
+    private boolean isCategoriaValida(String categoria) {
+        // Verifica se a categoria é válida
+        return categoria.equals("Filhote") || categoria.equals("Adulto");
+    }
+
+    private boolean verificarAceitacaoAnimal(Armazem armazem, String animal) {
+        // Verifica se o local de armazenamento aceita produtos para o animal especificado
+        return armazem.getAnimaisAceitos().contains(animal);
+    }
 }
