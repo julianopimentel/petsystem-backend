@@ -14,8 +14,9 @@ public class ArmazemControle {
     @Autowired
     private ArmazemServico armazemServico;
 
+    // listar todos
     @GetMapping
-    public ResponseEntity<?> get(){
+    public ResponseEntity<?> Listar(){
         try{
             return ResponseEntity.ok(armazemServico.buscarTodos());
         } catch (Exception e){
@@ -23,6 +24,7 @@ public class ArmazemControle {
         }
     }
 
+    // buscar por id
     @GetMapping("{id}")
     public ResponseEntity<?> getId(@PathVariable Long id){
         try {
@@ -32,29 +34,32 @@ public class ArmazemControle {
         }
     }
 
+    // cadastro de armazem
     @PostMapping
     public ResponseEntity<?> post(@RequestBody Armazem armazem){
         try {
-            armazem.setId(null);
             return ResponseEntity.ok(armazemServico.cadastro(armazem));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
+    // alterar armazem
     @PutMapping("{id}")
     public ResponseEntity<?> put(@PathVariable Long id, @RequestBody Armazem armazem) {
+
         try {
             if (id == null){
                 throw new Exception("Escolha o id de um armazem");
             }
             armazem.setId(id);
-            return ResponseEntity.ok(armazemServico.cadastro(armazem));
+            return ResponseEntity.ok(armazemServico.update(armazem));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
+    //desativar armazem
     @PutMapping("/desativar/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         if (id == null){
