@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/armazem")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ArmazemControle {
 
     @Autowired

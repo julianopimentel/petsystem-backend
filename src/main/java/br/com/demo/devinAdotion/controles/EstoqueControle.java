@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/estoque")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class EstoqueControle {
 
     @Autowired
@@ -67,12 +68,8 @@ public class EstoqueControle {
     // 7 - Cadastro de Produto do estoque - vendo se vai arrumar o cadastro do estoque
 
     @PostMapping(value = "/cadastro")
-    public ResponseEntity<Long> salvar(@RequestParam("armazem") Long armazem,
-                                       @RequestParam("produto") String produto,
-                                       @RequestParam("quantidade") Integer quantidade,
-                                       @RequestParam("animal") String animal,
-                                       @RequestParam("categoria") String categoria) throws Exception {
-        return ResponseEntity.ok().body(estoqueServico.salvar(armazem, produto, quantidade, animal, categoria));
+    public ResponseEntity<Estoque> salvar(@RequestBody Estoque estoque) throws Exception {
+        return ResponseEntity.ok().body(estoqueServico.salvar(estoque));
     }
 
     // edita todos os campos

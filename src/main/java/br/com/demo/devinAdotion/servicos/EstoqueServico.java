@@ -50,20 +50,10 @@ public class EstoqueServico {
 
 
     // 7 - Cadastro de Produto do estoque - vendo se vai arrumar o cadastro do estoque
-    public  Long salvar (
-            Long armazem,
-            String produto,
-            Integer quantidade,
-            String animal,
-            String categoria
-    ) throws Exception {
-        Estoque estoque = new Estoque();
-        Armazem armazem1 = armazemServico.buscarPorId(armazem);
-        estoque.setProduto(produto);
-        estoque.setQuantidade(quantidade);
-        estoque.setAnimal(animal);
-        estoque.setCategoria(categoria);
-        return estoqueRepositorio.save(estoque).getId();
+    public Estoque salvar (Estoque estoque) throws Exception {
+        Armazem armazem = armazemServico.buscarPorId(estoque.getArmazem().getId());
+        estoque.setArmazem(armazem);
+        return estoqueRepositorio.save(estoque);
     }
 
     // 5 - Editar produto do estoque

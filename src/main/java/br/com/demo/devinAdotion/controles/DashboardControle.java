@@ -9,6 +9,7 @@ import java.text.DecimalFormat;
 
 @RestController
 @RequestMapping("/estatisticas")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class DashboardControle {
 
     @Autowired
