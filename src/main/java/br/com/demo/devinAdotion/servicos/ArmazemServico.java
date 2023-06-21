@@ -40,10 +40,12 @@ public class ArmazemServico {
             throw new IllegalArgumentException("Animal inválido");
         }
 
-        armazemBanco.setNome(armazemBanco.getNome());
-        armazemBanco.setAnimal(armazemBanco.getAnimal());
+        armazemBanco.setNome(armazem.getNome());
+        armazemBanco.setAnimal(armazem.getAnimal());
+        //seta a situação como true
+        armazemBanco.setSituacao(true);
 
-        return armazemRepositorio.save(armazem);
+        return armazemRepositorio.save(armazemBanco);
     }
 
     public List<Armazem> buscarTodos() {
