@@ -35,9 +35,12 @@ public class UsuarioControle {
 
     @PostMapping("/login")
     public ResponseEntity<Usuario> logarUsuario(@RequestBody Usuario usuario) {
-        //Usuario usuarioLogado = usuarioServico.logarUsuario(usuario);
-        //retornar e-mail e senha no body
-        return ResponseEntity.ok(usuario);
+        boolean usuarioLogado = usuarioServico.autenticarUsuario(usuario.getEmail(), usuario.getSenha());
+
+        if (usuarioLogado) {
+            return ResponseEntity.ok(usuario);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/{id}")
