@@ -22,10 +22,7 @@ public class ArmazemServico {
     public Armazem cadastro(Armazem armazem) throws Exception {
 
 
-        Armazem armazemBanco = new Armazem(1L, "armazem1", "Gato", true);
-        if (armazem.getId() != null) {
-            armazemBanco = buscarPorId(armazem.getId());
-        }
+        Armazem armazemBanco = new Armazem();
 
         if (armazem.getNome() == null || armazem.getNome().isEmpty()) {
             throw new Exception("Nome é obrigatório");
@@ -33,6 +30,14 @@ public class ArmazemServico {
 
         if (armazem.getAnimal() == null) {
             throw new Exception("Gato ou Cachorro?");
+        }
+
+        //converte para minúsculo o getanimal
+        armazem.setAnimal(armazem.getAnimal().toLowerCase());
+
+        //verificar se o animal e a categoria são válidos
+        if (!armazem.getAnimal().equals("cachorro") && !armazem.getAnimal().equals("gato")) {
+            throw new IllegalArgumentException("Animal inválido");
         }
 
         armazemBanco.setNome(armazemBanco.getNome());
@@ -67,5 +72,30 @@ public class ArmazemServico {
         else
         armazem.setSituacao(false);
         return armazemRepositorio.save(armazem);
+    }
+
+    public Armazem update(Armazem armazem) throws Exception {
+        Armazem armazemBanco = armazemRepositorio.findById(armazem.getId()).get();
+        if (armazemBanco == null) {
+            throw new RuntimeException("Armazem não encontrado");
+        }
+        if (armazem.getNome() == null || armazem.getNome().isEmpty()) {
+            throw new Exception("Nome é obrigatório");
+        }
+
+        if (armazem.getAnimal() == null) {
+            throw new Exception("Gato ou Cachorro?");
+        }
+
+        //converte para minúsculo o getanimal
+        armazem.setAnimal(armazem.getAnimal().toLowerCase());
+
+        //verificar se o animal e a categoria são válidos
+        if (!armazem.getAnimal().equals("cachorro") && !armazem.getAnimal().equals("gato")) {
+            throw new IllegalArgumentException("Animal inválido");
+        }
+        armazemBanco.setNome(armazem.getNome());
+        armazemBanco.setAnimal(armazem.getAnimal());
+        return armazemRepositorio.save(armazemBanco);
     }
 }
