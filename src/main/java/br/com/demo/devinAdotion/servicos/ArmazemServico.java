@@ -48,15 +48,6 @@ public class ArmazemServico {
         return armazemOpcional.get();
     }
 
+    // teste de editar somente nome e animal
 
-
-    public boolean desativar(Long id) {
-        try {
-            Armazem armazem = buscarPorId(id);
-            armazemRepositorio.delete(armazem);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
 }

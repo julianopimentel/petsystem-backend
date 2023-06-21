@@ -3,6 +3,7 @@ package br.com.demo.devinAdotion.controles;
 import br.com.demo.devinAdotion.modelos.Armazem;
 import br.com.demo.devinAdotion.servicos.ArmazemServico;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +41,7 @@ public class ArmazemControle {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+// tá editando todos os campos
     @PutMapping("{id}")
     public ResponseEntity<?> put(@PathVariable Long id, @RequestBody Armazem armazem) {
         try {
@@ -54,13 +55,11 @@ public class ArmazemControle {
         }
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
-        try {
-            return ResponseEntity.ok(armazemServico.desativar(id));
-        } catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
+
+
+
+
+
+
 
 }
