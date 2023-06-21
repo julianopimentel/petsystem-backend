@@ -69,11 +69,7 @@ Roteiro da Aplicação
 ```http
   PUT /armazem/${id}
 ```
-
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `situacao` | `boolean` | **Obrigatório**. Status do armazém |
-
+Obs: Se houver estoque no armazém, não será possível desativá-lo.
 
 #### Editar o armazém
 
@@ -86,10 +82,6 @@ Roteiro da Aplicação
 | `nome` | `string` | **Obrigatório**. Nome do armazém |
 | `animal` | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
 
-#### Excluir armazém
-```http
-  DELETE /armazem/${id}
-```
 
 ### Estoque
 #### Cadastrar o estoque
@@ -97,14 +89,14 @@ Roteiro da Aplicação
 ```http
   POST /estoque/cadastro
 ```
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `id` | `long` | **Obrigatório**. ID do Produto |
-| `produto` | `string` | **Obrigatório**. Tipo de Produto(Ração, Antipulgas ou Antiparasitario) |
-| `animal` | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
-| `categoria` | `string` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
-| `quantidade` | `long` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
-| `armazem_id` | `long` | **Obrigatório**. ID do Armazém |
+| Parâmetro    | Tipo     | Descrição                           |
+|:-------------|:---------| :---------------------------------- |
+| `id`         | `long`   | **Obrigatório**. ID do Produto |
+| `produto`    | `string` | **Obrigatório**. Tipo de Produto(Ração, Antipulgas ou Antiparasitario) |
+| `animal`     | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
+| `categoria`  | `string` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
+| `quantidade` | `long`   | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
+| `armazem`    | `any`    | **Obrigatório**. ID do Armazém |
 
 
 #### Listar todos os estoques
@@ -124,13 +116,13 @@ Roteiro da Aplicação
 ```http
   PUT /estoque/${id}
 ```
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `produto` | `string` | **Obrigatório**. Tipo de Produto(Ração, Antipulgas ou Antiparasitario) |
-| `animal` | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
-| `categoria` | `string` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
-| `quantidade` | `long` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
-| `armazem_id` | `long` | **Obrigatório**. ID do Armazém |
+| Parâmetro    | Tipo     | Descrição                           |
+|:-------------|:---------| :---------------------------------- |
+| `produto`    | `string` | **Obrigatório**. Tipo de Produto(Ração, Antipulgas ou Antiparasitario) |
+| `animal`     | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
+| `categoria`  | `string` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
+| `quantidade` | `long`   | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
+| `armazem`   | `any`    | **Obrigatório**. ID do Armazém |
 
 #### Excluir estoque
 ```http
@@ -159,7 +151,6 @@ Esperamos que esta aplicação de gerenciamento de estoque de produtos seja úti
 - [@marcosouza1984](https://github.com/marcosouza1984)
 - [@julianoppinheiro](https://github.com/julianoppinheiro)
 - [@josejunior1995](https://github.com/josejunior1995)
-- [@gabrielssi](https://github.com/gabrielssi)
 - [@Josiasscheibe](https://github.com/Josiasscheibe)
 
 
@@ -167,4 +158,3 @@ Esperamos que esta aplicação de gerenciamento de estoque de produtos seja úti
 - [@Riedel-Gabriela](https://github.com/Riedel-Gabriela)
 - [@Gabriela-Vasco](https://github.com/Gabriela-Vasco)
 - [@gabrielssi](https://github.com/gabrielssi)
-- [@marcosouza1984](https://github.com/marcosouza1984)
