@@ -179,3 +179,6 @@ INSERT INTO public.tb_estoque(quantidade, armazem_id, animal, categoria, produto
 VALUES (20, 2,'gato', 'adulto', 'racao');
 INSERT INTO public.tb_estoque(quantidade, armazem_id, animal, categoria, produto)
 VALUES (30, 2,'gato', 'adulto', 'racao');
+
+INSERT INTO public.tb_usuario(email, nome, senha)
+VALUES ('fulano@gmail.com', 'Fulano', 'password');
