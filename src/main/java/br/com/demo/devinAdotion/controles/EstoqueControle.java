@@ -67,7 +67,7 @@ public class EstoqueControle {
 
     // 7 - Cadastro de Produto do estoque - vendo se vai arrumar o cadastro do estoque
 
-    @PostMapping(value = "/cadastro")
+    @PostMapping
     public ResponseEntity<Estoque> salvar(@RequestBody Estoque estoque) throws Exception {
         return ResponseEntity.ok().body(estoqueServico.salvar(estoque));
     }
@@ -92,7 +92,7 @@ public class EstoqueControle {
 
     // editar somente produto e quantidade
 
-    @PutMapping("/editar/{id}")
+    @PutMapping("{id}")
     public ResponseEntity editar(@PathVariable Long id, @RequestBody Estoque estoqueEditado) {
         //buscar o estoque pelo id
         Estoque estoque = estoqueServico.buscarId(id);
