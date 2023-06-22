@@ -65,19 +65,19 @@ public class EstoqueServico {
 
     private boolean isTipoProdutoValido(String tipoProduto) {
         // Verifica se o tipo do produto é válido
-        return tipoProduto.equals("Ração") ||
-                tipoProduto.equals("Antiparasitário") ||
-                tipoProduto.equals("Antipulgas");
+        return tipoProduto.equals("racao") ||
+                tipoProduto.equals("antiparasitario") ||
+                tipoProduto.equals("antipulgas");
     }
 
     private boolean isAnimalValido(String animal) {
         // Verifica se o animal é válido
-        return animal.equals("Cachorro") || animal.equals("Gato");
+        return animal.equals("cachorro") || animal.equals("gato");
     }
 
     private boolean isCategoriaValida(String categoria) {
         // Verifica se a categoria é válida
-        return categoria.equals("Filhote") || categoria.equals("Adulto");
+        return categoria.equals("filhote") || categoria.equals("adulto");
     }
 
     private boolean verificarAceitacaoAnimal(Armazem armazem, String animal) {
