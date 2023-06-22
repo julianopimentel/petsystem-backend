@@ -64,13 +64,6 @@ Roteiro da Aplicação
   GET /armazem/${id}
 ```
 
-#### Desativar o armazém
-
-```http
-  PUT /armazem/${id}
-```
-Obs: Se houver estoque no armazém, não será possível desativá-lo.
-
 #### Editar o armazém
 
 ```http
@@ -81,6 +74,13 @@ Obs: Se houver estoque no armazém, não será possível desativá-lo.
 | `id` | `long` | **Obrigatório**. ID do armazém |
 | `nome` | `string` | **Obrigatório**. Nome do armazém |
 | `animal` | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
+
+#### Desativar o armazém
+
+```http
+  PUT /armazem/desativar/${id}
+```
+Obs: Se houver estoque no armazém, não será possível desativá-lo.
 
 
 ### Estoque
