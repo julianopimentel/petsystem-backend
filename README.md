@@ -20,7 +20,7 @@ Roteiro da Aplicação
 ### Cadastrar o Usuário
 
 ```http
-  POST /cadastro
+  POST /usuarios
 ```
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
@@ -31,7 +31,7 @@ Roteiro da Aplicação
 #### Entrar/Logar com o Usuário
 
 ```http
-  POST /login
+  POST /usuários/login
 ```
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
