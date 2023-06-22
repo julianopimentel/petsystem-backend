@@ -27,14 +27,15 @@ public class EstoqueServico {
         return estoque.orElse(null);
     }
 
-    public Long salvar(Estoque estoque) throws Exception {
+    public Estoque salvar(Estoque estoque) throws Exception {
         validarEstoque(estoque);
-        Armazem armazem = armazemServico.buscarPorId(estoque.getArmazenamento().getId());
+        Armazem armazem = armazemServico.buscarPorId(estoque.getArmazem().getId());
         if (!verificarAceitacaoAnimal(armazem, estoque.getAnimal())) {
             throw new Exception("Este local de armazenamento não aceita produtos para o animal especificado.");
         }
-        estoque.setArmazenamento(armazem);
-        return estoqueRepositorio.save(estoque).getId();
+
+        //salvar o estoque
+        return estoqueRepositorio.save(estoque);
     }
 
     public void editarProduto(Estoque estoque) {
@@ -46,7 +47,7 @@ public class EstoqueServico {
     }
 
     private void validarEstoque(Estoque estoque) throws Exception {
-        if (!isTipoProdutoValido(estoque.getTipoProduto())) {
+        if (!isTipoProdutoValido(estoque.getProduto())) {
             throw new Exception("Tipo de produto inválido");
         }
 
@@ -82,6 +83,6 @@ public class EstoqueServico {
 
     private boolean verificarAceitacaoAnimal(Armazem armazem, String animal) {
         // Verifica se o local de armazenamento aceita produtos para o animal especificado
-        return armazem.getAnimaisAceitos().contains(animal);
+        return armazem.getAnimal().contains(animal);
     }
 }
