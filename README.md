@@ -31,7 +31,7 @@ Roteiro da Aplicação
 #### Entrar/Logar com o Usuário
 
 ```http
-  POST /usuários/login
+  POST /usuarios/login
 ```
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
