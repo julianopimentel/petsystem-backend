@@ -50,7 +50,7 @@ Roteiro da Aplicação
 | `id` | `long` | **Obrigatório**. ID do armazém |
 | `nome` | `string` | **Obrigatório**. Nome do armazém |
 | `animal` | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
-| `situacao` | `boolean` | **Obrigatório**. Status do armazém |
+Obs: Todos os produtos cadastro teram a situação como TRUE
 
 #### Listagem de todos os armazéns
 
@@ -87,7 +87,7 @@ Obs: Se houver estoque no armazém, não será possível desativá-lo.
 #### Cadastrar o estoque
 
 ```http
-  POST /estoque/cadastro
+  POST /estoque
 ```
 | Parâmetro    | Tipo     | Descrição                           |
 |:-------------|:---------| :---------------------------------- |
@@ -119,10 +119,7 @@ Obs: Se houver estoque no armazém, não será possível desativá-lo.
 | Parâmetro    | Tipo     | Descrição                           |
 |:-------------|:---------| :---------------------------------- |
 | `produto`    | `string` | **Obrigatório**. Tipo de Produto(Ração, Antipulgas ou Antiparasitario) |
-| `animal`     | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
-| `categoria`  | `string` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
 | `quantidade` | `long`   | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
-| `armazem`   | `any`    | **Obrigatório**. ID do Armazém |
 
 #### Excluir estoque
 ```http
