@@ -22,9 +22,18 @@ public class EstoqueServico {
         return estoqueRepositorio.findAll();
     }
 
-    public Estoque buscarId(Long id) {
-        Optional<Estoque> estoque = estoqueRepositorio.findById(id);
-        return estoque.orElse(null);
+    // método antigo, agora tras o tratamento de erro.
+//    public Estoque buscarId(Long id) {
+//        Optional<Estoque> estoque = estoqueRepositorio.findById(id);
+//        return estoque.orElse(null);
+//    }
+
+    public Estoque buscarId(Long id) throws Exception {
+        Optional<Estoque> estoqueOpcional = estoqueRepositorio.findById(id);
+        if (estoqueOpcional.isEmpty()) {
+            throw new Exception("Estoque não encontrado.");
+        }
+        return estoqueOpcional.get();
     }
 
     public Estoque salvar(Estoque estoque) throws Exception {
@@ -56,7 +65,7 @@ public class EstoqueServico {
         }
 
         if (!isAnimalValido(estoque.getAnimal())) {
-            throw new Exception("Animal inválido");
+            throw new Exception("Preencher animal é obrigatório. Escolha gato ou cachorro.");
         }
 
         if (!isCategoriaValida(estoque.getCategoria())) {
