@@ -25,7 +25,7 @@ public class DashboardControle {
 
         //verificar se o animal e a categoria são válidos
         if (!animal.equals("cachorro") && !animal.equals("gato")) {
-            throw new IllegalArgumentException("Animal inválido");
+            throw new IllegalArgumentException("Preencher animal é obrigatório. Escolha gato ou cachorro.");
         }
 
         if (!categoria.equals("filhote") && !categoria.equals("adulto")) {

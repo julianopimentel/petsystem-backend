@@ -39,9 +39,19 @@ public class EstoqueControle {
     }
 
     // buscar por id
+    // método antigo
+//    @GetMapping("{id}")
+//    public ResponseEntity<Estoque> buscarId(@PathVariable Long id){
+//        return ResponseEntity.status(HttpStatus.OK).body(estoqueServico.buscarId(id));
+//    }
+
     @GetMapping("{id}")
-    public ResponseEntity<Estoque> buscarId(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(estoqueServico.buscarId(id));
+    public ResponseEntity<?> getId(@PathVariable Long id){
+        try {
+            return ResponseEntity.ok(estoqueServico.buscarId(id));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
     // cadastro produto no estoque
 
@@ -67,9 +77,21 @@ public class EstoqueControle {
 
     // 7 - Cadastro de Produto do estoque - vendo se vai arrumar o cadastro do estoque
 
+//    @PostMapping
+//    public ResponseEntity<Estoque> salvar(@RequestBody Estoque estoque) throws Exception {
+//        return ResponseEntity.ok().body(estoqueServico.salvar(estoque));
+//    }
+
+    // teste para melhorar o retorno no caso de erro
     @PostMapping
-    public ResponseEntity<Estoque> salvar(@RequestBody Estoque estoque) throws Exception {
-        return ResponseEntity.ok().body(estoqueServico.salvar(estoque));
+    public ResponseEntity<?> salvar(@RequestBody Estoque estoque) {
+        try {
+            Estoque estoqueSalvo = estoqueServico.salvar(estoque);
+            return ResponseEntity.ok().body(estoqueSalvo);
+        } catch (Exception e) {
+            // Erro interno do servidor: 500 Internal Server Error
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     // edita todos os campos
@@ -93,7 +115,7 @@ public class EstoqueControle {
     // editar somente produto e quantidade
 
     @PutMapping("{id}")
-    public ResponseEntity editar(@PathVariable Long id, @RequestBody Estoque estoqueEditado) {
+    public ResponseEntity editar(@PathVariable Long id, @RequestBody Estoque estoqueEditado) throws Exception {
         //buscar o estoque pelo id
         Estoque estoque = estoqueServico.buscarId(id);
         //verificar se o estoque existe

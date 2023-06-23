@@ -37,7 +37,7 @@ public class ArmazemServico {
 
         //verificar se o animal e a categoria são válidos
         if (!armazem.getAnimal().equals("cachorro") && !armazem.getAnimal().equals("gato")) {
-            throw new IllegalArgumentException("Animal inválido");
+            throw new IllegalArgumentException("Preencher animal é obrigatório. Escolha gato ou cachorro.");
         }
 
         armazemBanco.setNome(armazem.getNome());
@@ -94,7 +94,7 @@ public class ArmazemServico {
 
         //verificar se o animal e a categoria são válidos
         if (!armazem.getAnimal().equals("cachorro") && !armazem.getAnimal().equals("gato")) {
-            throw new IllegalArgumentException("Animal inválido");
+            throw new IllegalArgumentException("Preencher animal é obrigatório. Escolha gato ou cachorro.");
         }
         armazemBanco.setNome(armazem.getNome());
         armazemBanco.setAnimal(armazem.getAnimal());
