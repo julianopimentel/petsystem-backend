@@ -32,22 +32,6 @@ public class UsuarioServico {
         return usuarioRepositorio.save(usuario);
     }
 
-    public List<Usuario> listarUsuarios() {
-        return usuarioRepositorio.findAll();
-    }
-
-    public Usuario buscarUsuarioPorId(Long id) {
-        return usuarioRepositorio.findById(id).orElse(null);
-    }
-
-    public Usuario atualizarUsuario(Usuario usuario) {
-        return usuarioRepositorio.save(usuario);
-    }
-
-    public void excluirUsuario(Usuario usuario) {
-        usuarioRepositorio.delete(usuario);
-    }
-
     public boolean autenticarUsuario(String email, String senha) {
         if (email == null || senha == null) {
             throw new IllegalArgumentException("E-mail e senha devem ser informados");
@@ -58,5 +42,11 @@ public class UsuarioServico {
             return new AutenticacaoResposta(true, "Autenticação bem-sucedida").isAutenticado();
         }
         return new AutenticacaoResposta(false, "Credenciais inválidas").isAutenticado();
+    }
+
+    // Método para buscar o usuário pelo e-mail que foi logado
+    public Usuario buscarDadosUsuario(String email) {
+        Usuario usuario = usuarioRepositorio.findByEmail(email);
+        return usuario;
     }
 }

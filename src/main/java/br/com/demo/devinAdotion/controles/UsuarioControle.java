@@ -34,7 +34,8 @@ public class UsuarioControle {
         boolean usuarioLogado = usuarioServico.autenticarUsuario(usuario.getEmail(), usuario.getSenha());
 
         if (usuarioLogado) {
-            return ResponseEntity.ok(usuario);
+            Usuario usuarioLogadoObjeto = usuarioServico.buscarDadosUsuario(usuario.getEmail());
+            return ResponseEntity.ok(usuarioLogadoObjeto);
         }
         return ResponseEntity.notFound().build();
     }
@@ -42,6 +43,11 @@ public class UsuarioControle {
     // Endpoint para retonar que a conexão está ok com o bankend
     @GetMapping("/login")
     public ResponseEntity verificarconexao() {
+        //retornar um ok no formato do json
+        return ResponseEntity.ok("{\"mensagem\": \"ok\"}");
+    }
+    @GetMapping("/cadastro")
+    public ResponseEntity verificarconexaoCadastro() {
         //retornar um ok no formato do json
         return ResponseEntity.ok("{\"mensagem\": \"ok\"}");
     }
