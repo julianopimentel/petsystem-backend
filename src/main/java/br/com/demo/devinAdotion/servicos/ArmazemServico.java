@@ -95,7 +95,7 @@ public class ArmazemServico {
         }
 
         //verificar se o nome já existe
-        if (armazem.getNome().equals(armazemBanco.getNome()) == false){
+        if (armazem.getNome().equals(armazemBanco.getNome()) == true){
             throw new Exception("Nome já cadastrado, escolha outro nome para o armazém");
         }
 
