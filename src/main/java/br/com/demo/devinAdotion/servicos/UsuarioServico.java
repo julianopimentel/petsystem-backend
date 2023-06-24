@@ -59,6 +59,4 @@ public class UsuarioServico {
         }
         return new AutenticacaoResposta(false, "Credenciais inválidas").isAutenticado();
     }
-
-
 }
