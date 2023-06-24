@@ -19,23 +19,16 @@ public class UsuarioServico {
     }
 
     public Usuario cadastrarUsuario(Usuario usuario) {
-        if (usuarioRepositorio.existsByEmail(usuario.getEmail())) {
-            throw new IllegalArgumentException("E-mail já cadastrado");
-        }
-
-        // Aqui ele vai verificar se todos os campos foram informados
-        if (usuario.getNome() == null || usuario.getEmail() == null || usuario.getSenha() == null) {
-            throw new IllegalArgumentException("Todos os campos devem ser informados");
-        }
+        // Verificar se todos os campos foram informados
+        isCamposValidos(usuario.getNome(), usuario.getEmail(), usuario.getSenha(), true);
 
         // Aqui a lógica para salvar o usuário no banco de dados
         return usuarioRepositorio.save(usuario);
     }
 
     public boolean autenticarUsuario(String email, String senha) {
-        if (email == null || senha == null) {
-            throw new IllegalArgumentException("E-mail e senha devem ser informados");
-        }
+        // Verificar se todos os campos foram informados
+        isCamposValidos(null, email, senha, false);
 
         Usuario usuario = usuarioRepositorio.findByEmail(email);
         if (usuario != null && usuario.getSenha().equals(senha)) {
@@ -48,5 +41,49 @@ public class UsuarioServico {
     public Usuario buscarDadosUsuario(String email) {
         Usuario usuario = usuarioRepositorio.findByEmail(email);
         return usuario;
+    }
+
+    // Método para verificar todos os campos
+    public void isCamposValidos(String nome, String email, String senha, boolean isCadastro) {
+        if(isCadastro){
+            // verificar se todos os campos foram informados
+            if (nome == null || email == null || senha == null) {
+                throw new IllegalArgumentException("Todos os campos devem ser informados");
+            }
+            // verificar se não tem espaços em branco ou vazio
+            if (nome.isBlank() || email.isBlank() || senha.isBlank()) {
+                throw new IllegalArgumentException("Todos os campos devem ser informados");
+            }
+            // verificar se não está vazio
+            if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+                throw new IllegalArgumentException("Todos os campos devem ser informados");
+            }
+            // Verificar se o e-mail já está cadastrado
+            if (usuarioRepositorio.existsByEmail(email)) {
+                throw new IllegalArgumentException("E-mail já cadastrado");
+            }
+            // verificar se o e-mail é válido
+            if (!email.contains("@") || !email.contains(".")) {
+                throw new IllegalArgumentException("E-mail inválido");
+            }
+        }
+        else {
+            // verificar se todos os campos foram informados
+            if (email == null || senha == null) {
+                throw new IllegalArgumentException("Todos os campos devem ser informados");
+            }
+            // verificar se não tem espaços em branco ou vazio
+            if (email.isBlank() || senha.isBlank()) {
+                throw new IllegalArgumentException("Todos os campos devem ser informados");
+            }
+            // verificar se não está vazio
+            if (email.isEmpty() || senha.isEmpty()) {
+                throw new IllegalArgumentException("Todos os campos devem ser informados");
+            }
+            // verificar se o e-mail é válido
+            if (!email.contains("@") || !email.contains(".")) {
+                throw new IllegalArgumentException("E-mail inválido");
+            }
+        }
     }
 }
