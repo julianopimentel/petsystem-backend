@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/usuario")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioControle {
 
@@ -21,18 +21,14 @@ public class UsuarioControle {
         this.usuarioServico = usuarioServico;
     }
 
-    @PostMapping
+    // Endpoint para cadastrar um usuário
+    @PostMapping("/cadastro")
     public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario) {
         Usuario novoUsuario = usuarioServico.cadastrarUsuario(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Usuario>> listarUsuarios() {
-        List<Usuario> usuarios = usuarioServico.listarUsuarios();
-        return ResponseEntity.ok(usuarios);
-    }
-
+    // Endpoint para entrar na plataforma
     @PostMapping("/login")
     public ResponseEntity<Usuario> logarUsuario(@RequestBody Usuario usuario) {
         boolean usuarioLogado = usuarioServico.autenticarUsuario(usuario.getEmail(), usuario.getSenha());
@@ -43,38 +39,13 @@ public class UsuarioControle {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable Long id) {
-        Usuario usuario = usuarioServico.buscarUsuarioPorId(id);
-        if (usuario != null) {
-            return ResponseEntity.ok(usuario);
-        }
-        return ResponseEntity.notFound().build();
-    }
-
-    @PutMapping("/{id}")
-    ResponseEntity<Usuario> atualizarUsuario(@RequestBody Usuario usuario){
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioServico.atualizarUsuario(usuario));
-    }
-
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuarioAtualizado) {
-//        Usuario usuario = usuarioServico.buscarUsuarioPorId(id);
-//        if (usuario != null) {
-//            usuarioAtualizado.setId(usuario.getId());
-//            Usuario usuarioAtualizado = usuarioServico.atualizarUsuario(usuarioAtualizado);
-//            return ResponseEntity.ok(usuarioAtualizado);
-//        }
-//        return ResponseEntity.notFound().build();
-//    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirUsuario(@PathVariable Long id) {
-        Usuario usuario = usuarioServico.buscarUsuarioPorId(id);
-        if (usuario != null) {
-            usuarioServico.excluirUsuario(usuario);
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
+    // Endpoint para retonar que a conexão está ok com o bankend
+    @GetMapping("/login")
+    public ResponseEntity verificarconexao() {
+        //retornar um ok no formato do json
+        return ResponseEntity.ok("{\"mensagem\": \"ok\"}");
     }
 }
+
+
+
