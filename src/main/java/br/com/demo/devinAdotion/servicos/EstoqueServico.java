@@ -22,11 +22,6 @@ public class EstoqueServico {
         return estoqueRepositorio.findAll();
     }
 
-    // método antigo, agora tras o tratamento de erro.
-//    public Estoque buscarId(Long id) {
-//        Optional<Estoque> estoque = estoqueRepositorio.findById(id);
-//        return estoque.orElse(null);
-//    }
 
     public Estoque buscarId(Long id) throws Exception {
         Optional<Estoque> estoqueOpcional = estoqueRepositorio.findById(id);
@@ -37,7 +32,9 @@ public class EstoqueServico {
     }
 
     public Estoque salvar(Estoque estoque) throws Exception {
+        //verificar se o produto já existe
         validarEstoque(estoque);
+
         Armazem armazem = armazemServico.buscarPorId(estoque.getArmazem().getId());
         if (!verificarAceitacaoAnimal(armazem, estoque.getAnimal())) {
             throw new Exception("Este local de armazenamento não aceita produtos para o animal especificado.");
@@ -48,10 +45,20 @@ public class EstoqueServico {
     }
 
     public void editarProduto(Estoque estoque) {
+        //verificar se o id existe
+        if(existsById(estoque.getId()) == false){
+            throw new IllegalArgumentException("Id não encontrado do estoque");
+        }
+
         estoqueRepositorio.updateProdutoAndQuantidadeById(estoque.getProduto(), estoque.getQuantidade(), estoque.getId());
     }
 
     public void deletarId(Long id) {
+        //verificar se o id existe
+        if(existsById(id) == false){
+            throw new IllegalArgumentException("Id não encontrado do estoque");
+        }
+
         estoqueRepositorio.deleteById(id);
     }
 
@@ -93,5 +100,14 @@ public class EstoqueServico {
     private boolean verificarAceitacaoAnimal(Armazem armazem, String animal) {
         // Verifica se o local de armazenamento aceita produtos para o animal especificado
         return armazem.getAnimal().contains(animal);
+    }
+
+    //metodo para verificar se o ID existe
+    public boolean existsById(Long id) {
+        boolean exist = estoqueRepositorio.existsById(id);
+        if (!exist) {
+            return false;
+        }
+        return true;
     }
 }

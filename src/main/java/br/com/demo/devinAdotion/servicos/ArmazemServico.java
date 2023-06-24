@@ -40,6 +40,11 @@ public class ArmazemServico {
             throw new IllegalArgumentException("Preencher animal é obrigatório. Escolha gato ou cachorro.");
         }
 
+        //verificar se o nome já existe
+        if (armazemRepositorio.existsByNome(armazem.getNome())) {
+            throw new Exception("Nome já cadastrado, escolha outro nome para o armazém");
+        }
+
         armazemBanco.setNome(armazem.getNome());
         armazemBanco.setAnimal(armazem.getAnimal());
         //seta a situação como true
@@ -89,6 +94,11 @@ public class ArmazemServico {
             throw new Exception("Gato ou Cachorro?");
         }
 
+        //verificar se o nome já existe
+        if (armazem.getNome().equals(armazemBanco.getNome()) == false){
+            throw new Exception("Nome já cadastrado, escolha outro nome para o armazém");
+        }
+
         //converte para minúsculo o getanimal
         armazem.setAnimal(armazem.getAnimal().toLowerCase());
 
@@ -100,4 +110,5 @@ public class ArmazemServico {
         armazemBanco.setAnimal(armazem.getAnimal());
         return armazemRepositorio.save(armazemBanco);
     }
+
 }
