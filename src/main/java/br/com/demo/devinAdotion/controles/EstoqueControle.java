@@ -17,7 +17,6 @@ public class EstoqueControle {
     @Autowired
     private EstoqueServico estoqueServico;
 
-    // ver se prefere o GET buscarTodos como acima ou abaixo
     @GetMapping
     public  ResponseEntity<List<Estoque>> buscarTodos() {
         return  ResponseEntity.status(HttpStatus.OK).body(estoqueServico.buscarTodos());
