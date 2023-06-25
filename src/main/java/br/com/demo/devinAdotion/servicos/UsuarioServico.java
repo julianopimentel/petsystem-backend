@@ -6,8 +6,6 @@ import br.com.demo.devinAdotion.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class UsuarioServico {
 
