@@ -21,15 +21,15 @@ public interface EstoqueRepositorio extends JpaRepository<Estoque, Long> {
     void updateProdutoAndQuantidadeById(@NonNull String produto, @NonNull Integer quantidade, @NonNull Long id);
 
     // consultar estoque por tipo produto
-    @Query("select count(e) from Estoque e where e.animal = ?1 and e.categoria = ?2 and e.produto = ?3")
+    @Query("select sum(e.quantidade) from Estoque e where e.animal = ?1 and e.categoria = ?2 and e.produto = ?3")
     long countByTipo(String animal, String categoria, String produto);
 
     // consultar estoque por tipo animal
     @Query("select count(e) from Estoque e where e.animal = ?1 and e.categoria = ?2")
     long countByTipoAnimal(String animal, String categoria);
 
-    // consultar estoque e calcular media da raçao
-    @Query("select avg(e.quantidade) from Estoque e where e.animal = ?1 and e.categoria = ?2")
-    double calcularMedia(String animal, String categoria);
+    // consultar estoque e calcular total da raçao
+    @Query("select sum(e.quantidade) from Estoque e where e.animal = ?1 and e.categoria = ?2")
+    long calcularTotal(String animal, String categoria);
 
 }

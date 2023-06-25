@@ -19,8 +19,8 @@ public class DashboardServico {
     }
 
 
-    public double calculateMediaRacaoByTipo(String animal, String categoria) {
-        return estoqueRepositorio.calcularMedia(animal, categoria);
+    public long calculateTotalRacaoByTipo(String animal, String categoria) {
+        return estoqueRepositorio.calcularTotal(animal, categoria);
     }
 
     public long countByTipoAndAntiparasitario(String animal, String categoria) {
