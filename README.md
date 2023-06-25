@@ -137,6 +137,15 @@ Obs: Se houver estoque no armazém, não será possível desativá-lo.
 | `animal` | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
 | `categoria` | `string` | **Obrigatório**. Categoria do animal(Filhote ou Adulto) |
 
+# Uso da aplicação
+
+Espera-se que o usuário clone o projeto em seu ambiente local e configure o banco de dados [PostgreSQL](https://www.postgresql.org/) com o nome do banco de dados especificado no projeto (devinAdotion). Além disso, é necessário fornecer as credenciais do banco de dados no arquivo:
+```
+application.properties
+```
+
+Após configurar o ambiente, a aplicação pode ser iniciada em uma IDE, como o [IntelliJ](https://www.jetbrains.com/pt-br/idea/).
+
 # Contribuição
 Este projeto foi desenvolvido como parte de um trabalho em equipe. Caso queira contribuir para a melhoria desta aplicação, fique à vontade para enviar pull requests e sugestões de melhorias.
 
