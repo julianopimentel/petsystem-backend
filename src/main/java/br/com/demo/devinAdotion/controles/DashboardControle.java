@@ -32,19 +32,15 @@ public class DashboardControle {
             throw new IllegalArgumentException("Categoria inválida");
         }
 
-        try {
+
         long total= dashboardServico.countAnimais(animal, categoria);
         long totalComAntipulgas = dashboardServico.countByTipoAndAntipulgas(animal, categoria);
         long totalComAntiparasitario = dashboardServico.countByTipoAndAntiparasitario(animal, categoria);
-        long consultaTotalRacao = dashboardServico.calculateTotalRacaoByTipo(animal, categoria);
+        long totalRacao = dashboardServico.calculateTotalRacaoByTipo(animal, categoria);
 
 
         //retorna um objeto com as estatísticas
-        return new EstatisticasAnimais(total, totalComAntipulgas, totalComAntiparasitario, consultaTotalRacao);
-        } catch (Exception e) {
-            //retornar o EstatisticasAnimais com todos os valores zerados
-            return new EstatisticasAnimais(0, 0, 0, 0);
-        }
+        return new EstatisticasAnimais(total, totalComAntipulgas, totalComAntiparasitario, totalRacao);
     }
 
 

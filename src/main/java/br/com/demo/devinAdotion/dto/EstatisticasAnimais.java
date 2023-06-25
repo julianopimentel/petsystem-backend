@@ -12,5 +12,5 @@ public class EstatisticasAnimais
     private long total;
     private long totalComAntipulgas;
     private long totalComAntiparasitario;
-    private double mediaRacao;
+    private long totalRacao;
 }
