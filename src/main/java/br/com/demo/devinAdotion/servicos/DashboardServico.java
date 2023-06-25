@@ -11,20 +11,35 @@ public class DashboardServico {
     private EstoqueRepositorio estoqueRepositorio;
 
     public long countAnimais(String animal, String categoria) {
-        return estoqueRepositorio.countByTipoAnimal(animal, categoria);
+        Long sum = estoqueRepositorio.countByTipoAnimal(animal, categoria);
+        if(sum != null) {
+            return sum;
+        }
+        return 0;
     }
 
     public long countByTipoAndAntipulgas(String animal, String categoria) {
-        return estoqueRepositorio.countByTipo(animal, categoria, "antipulgas");
-    }
-
-
-    public long calculateTotalRacaoByTipo(String animal, String categoria) {
-        return estoqueRepositorio.calcularTotal(animal, categoria);
+        Long sum  = estoqueRepositorio.countByTipo(animal, categoria, "antipulgas");
+        if(sum != null) {
+            return sum;
+        }
+        return 0;
     }
 
     public long countByTipoAndAntiparasitario(String animal, String categoria) {
-        return estoqueRepositorio.countByTipo(animal, categoria, "antiparasitario");
-
+        Long sum = estoqueRepositorio.countByTipo(animal, categoria, "antiparasitario");
+        if(sum != null) {
+            return sum;
+        }
+        return 0;
     }
+
+    public long calculateTotalRacaoByTipo(String animal, String categoria) {
+        Long sum = estoqueRepositorio.countByTipo(animal, categoria, "racao");
+        if(sum != null) {
+            return sum;
+        }
+        return 0;
+    }
+
 }
