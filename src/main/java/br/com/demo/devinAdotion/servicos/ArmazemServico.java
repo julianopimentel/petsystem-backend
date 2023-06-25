@@ -1,10 +1,10 @@
 package br.com.demo.devinAdotion.servicos;
 
 import br.com.demo.devinAdotion.modelos.Armazem;
-import br.com.demo.devinAdotion.modelos.Estoque;
 import br.com.demo.devinAdotion.repositorios.ArmazemRepositorio;
 import br.com.demo.devinAdotion.repositorios.EstoqueRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,7 +54,9 @@ public class ArmazemServico {
     }
 
     public List<Armazem> buscarTodos() {
-        return armazemRepositorio.findAll();
+        //ordenar por id
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        return armazemRepositorio.findAll(sort);
     }
 
     public Armazem buscarPorId(Long id) throws Exception {

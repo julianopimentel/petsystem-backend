@@ -4,6 +4,7 @@ import br.com.demo.devinAdotion.modelos.Armazem;
 import br.com.demo.devinAdotion.modelos.Estoque;
 import br.com.demo.devinAdotion.repositorios.EstoqueRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,9 @@ public class EstoqueServico {
     private ArmazemServico armazemServico;
 
     public List<Estoque> buscarTodos() {
-        return estoqueRepositorio.findAll();
+        //ordenar por id
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        return estoqueRepositorio.findAll(sort);
     }
 
 
