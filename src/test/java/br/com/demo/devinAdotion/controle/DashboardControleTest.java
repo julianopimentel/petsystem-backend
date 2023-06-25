@@ -28,13 +28,14 @@ public class DashboardControleTest {
         long totalAnimais = 10;
         long totalAntipulgas = 5;
         long totalAntiparasitario = 3;
-        double mediaRacao = 31.42;
+        long totalRacao = 5;
+
 
         // Definir comportamento do mock
         when(dashboardServico.countAnimais(animal, categoria)).thenReturn(totalAnimais);
         when(dashboardServico.countByTipoAndAntipulgas(animal, categoria)).thenReturn(totalAntipulgas);
         when(dashboardServico.countByTipoAndAntiparasitario(animal, categoria)).thenReturn(totalAntiparasitario);
-        when(dashboardServico.calculateMediaRacaoByTipo(animal, categoria)).thenReturn(mediaRacao);
+        when(dashboardServico.calculateTotalRacaoByTipo(animal, categoria)).thenReturn(totalRacao);
 
         // Executar o método a ser testado
         EstatisticasAnimais estatisticas = dashboardControle.getQuantidadeCachorroFilhote(animal, categoria);
@@ -43,6 +44,7 @@ public class DashboardControleTest {
         assertEquals(totalAnimais, estatisticas.getTotal());
         assertEquals(totalAntipulgas, estatisticas.getTotalComAntipulgas());
         assertEquals(totalAntiparasitario, estatisticas.getTotalComAntiparasitario());
-        assertEquals(mediaRacao, estatisticas.getMediaRacao());
+        assertEquals(totalRacao, estatisticas.getTotalRacao());
+
     }
 }

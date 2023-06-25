@@ -57,10 +57,12 @@ public class DashboardServicoTest {
         // Dados de teste
         String animal = "cachorro";
         String categoria = "filhote";
+        String produto = "racao";
         long mediaRacao = 31;
 
         // Definir comportamento do mock
-        when(estoqueRepositorio.calcularTotal(animal, categoria)).thenReturn(mediaRacao);
+        //when(estoqueRepositorio.countByTipo(animal,categoria,produto).thenReturn())
+        when(estoqueRepositorio.countByTipoAnimal(animal, categoria)).thenReturn(mediaRacao);
 
         // Executar o método a ser testado
         long media = dashboardServico.calculateTotalRacaoByTipo(animal, categoria);

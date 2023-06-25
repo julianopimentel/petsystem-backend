@@ -47,20 +47,6 @@ class EstoqueServicoTest  {
 
     }
 
-//    @Test
-//    void buscarId() {
-//        Armazem armazem = new Armazem(1L, "Armazem", "Cachorro", true);
-//        Estoque estoque = new Estoque(1L, "Ração", 5, "Cachorro", "Filhote", armazem);
-//
-//        when(estoqueRepositorio.findById(anyLong())).thenReturn(Optional.of(estoque));
-//
-//        Estoque estoque1 = estoqueServico.buscarId(1L);
-//
-//        Assertions.assertEquals("Filhote", estoque1.getCategoria());
-//
-//
-//    }
-
     @Test
     void salvar()  throws Exception {
 
@@ -68,25 +54,6 @@ class EstoqueServicoTest  {
         Estoque estoque = new Estoque(1L, "Ração", 5, "Cachorro", "Filhote", armazem);
 
         when(estoqueRepositorio.save(any())).thenReturn(estoque);
-
-        //Long novoEstoque = estoqueServico.salvar(1L,"Antipulga", 2, "Cachorro", "Adulto");
-
-       // assertNotNull(novoEstoque);
-    }
-
-    @Test
-    void editar() {
-
-//        Armazem armazem = new Armazem(1L, "Armazem", "Cachorro", true);
-//        Estoque estoque = new Estoque(1L, "Ração", 5, "Cachorro", "Filhote", armazem);
-//
-//        when(estoqueRepositorio.findById(anyLong())).thenReturn(Optional.of(estoque));
-//
-//        Estoque estoqueEditado = new Estoque(1L,"Ração", 5, "Cachorro", "Adulto", armazem );
-//
-//        estoqueServico.editar(estoqueEditado);
-//
-//        Assertions.assertEquals("Adulto", estoqueEditado.getcategoria());
 
     }
 
