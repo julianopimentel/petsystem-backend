@@ -16,8 +16,8 @@ Roteiro da Aplicação
 
 ## Documentação da API
 
-## Autenticação
-### Cadastrar o Usuário
+### Autenticação
+#### Cadastrar o Usuário
 
 ```http
   POST /usuario/cadastro
@@ -50,6 +50,7 @@ Roteiro da Aplicação
 | `id` | `long` | **Obrigatório**. ID do armazém |
 | `nome` | `string` | **Obrigatório**. Nome do armazém |
 | `animal` | `string` | **Obrigatório**. Tipo de animal (Cachorro ou Gato) |
+
 Obs: Todos os produtos cadastro teram a situação como TRUE
 
 #### Listagem de todos os armazéns
