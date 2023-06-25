@@ -36,15 +36,11 @@ public class DashboardControle {
         long total= dashboardServico.countAnimais(animal, categoria);
         long totalComAntipulgas = dashboardServico.countByTipoAndAntipulgas(animal, categoria);
         long totalComAntiparasitario = dashboardServico.countByTipoAndAntiparasitario(animal, categoria);
-        double consultaMediaRacao = dashboardServico.calculateMediaRacaoByTipo(animal, categoria);
+        long consultaTotalRacao = dashboardServico.calculateTotalRacaoByTipo(animal, categoria);
 
-        //formatar a média para duas casas decimais
-        DecimalFormat df = new DecimalFormat("#0.00");
-        String mediaRacaoFormatada = df.format(consultaMediaRacao).replace(".", ",");
-        double mediaRacao = Double.parseDouble(mediaRacaoFormatada.replace(",", "."));
 
         //retorna um objeto com as estatísticas
-        return new EstatisticasAnimais(total, totalComAntipulgas, totalComAntiparasitario, mediaRacao);
+        return new EstatisticasAnimais(total, totalComAntipulgas, totalComAntiparasitario, consultaTotalRacao);
         } catch (Exception e) {
             //retornar o EstatisticasAnimais com todos os valores zerados
             return new EstatisticasAnimais(0, 0, 0, 0);

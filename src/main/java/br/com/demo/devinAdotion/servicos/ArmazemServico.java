@@ -96,9 +96,8 @@ public class ArmazemServico {
             throw new Exception("Gato ou Cachorro?");
         }
 
-
         //verificar se o nome já existe
-        if (armazemRepositorio.existsByNome(armazem.getNome())) {
+        if (armazem.getNome().equals(armazemBanco.getNome()) == false && armazemRepositorio.existsByNome(armazem.getNome())) {
             throw new Exception("Nome já cadastrado, escolha outro nome para o armazém");
         }
 
